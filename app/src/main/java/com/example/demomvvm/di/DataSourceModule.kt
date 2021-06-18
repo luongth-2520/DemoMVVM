@@ -6,6 +6,7 @@ import com.example.demomvvm.data.source.local.AppDatabase
 import com.example.demomvvm.data.source.local.PokemonDAO
 import com.example.demomvvm.data.source.local.PokemonLocalImpl
 import com.example.demomvvm.data.source.remote.PokemonRemoteImpl
+import com.example.demomvvm.utils.Constants
 import org.koin.dsl.module
 
 val dataSourceModule = module {
@@ -18,7 +19,7 @@ val dataSourceModule = module {
     }
 
     single {
-        Room.databaseBuilder(get(), AppDatabase::class.java, "Pokedb").fallbackToDestructiveMigration().build()
+        Room.databaseBuilder(get(), AppDatabase::class.java, Constants.DB_NAME).fallbackToDestructiveMigration().build()
     }
 
     fun providePokemonDao(database: AppDatabase): PokemonDAO {
